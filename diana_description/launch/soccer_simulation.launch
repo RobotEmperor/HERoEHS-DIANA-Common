@@ -14,5 +14,4 @@
 
   <!-- Show in Rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find diana_description)/launch/soccer_simulation.rviz"/>
-
 </launch>

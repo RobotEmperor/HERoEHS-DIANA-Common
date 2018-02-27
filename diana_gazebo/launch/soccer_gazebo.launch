@@ -20,11 +20,11 @@
 
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-	 command="$(find xacro)/xacro.py '$(find diana_description)/urdf/soccer_simulation.xacro'" />
+	 command="$(find xacro)/xacro.py '$(find diana_description)/urdf/diana_soccer.xacro'" />
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-	args="-urdf -model soccer_simulation -param robot_description"/>
+	args="-urdf -model diana_soccer -param robot_description"/>
 
 
   <!-- ros_control robotis manipulator launch file -->
