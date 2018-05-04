@@ -29,8 +29,7 @@
   <!-- pelvis -->
 
   <link name="pelvis">
-
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -50,8 +49,8 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
+  
 
   <joint name="imu_fixed" type="fixed">
     <parent link="pelvis"/>
@@ -67,7 +66,6 @@
     </inertial>
   </link>
 
-
   <!-- chest -->
   <joint name="waist_fixed" type="fixed">
     <parent link="pelvis"/>
@@ -76,7 +74,7 @@
   </joint>
 
   <link name="waist_fixed_link">
-     <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -97,8 +95,7 @@
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
   </link>
-
-
+  
   <joint name="waist_roll" type="revolute">
     <parent link="waist_fixed_link"/>
     <child link="waist_roll_link"/>
@@ -107,8 +104,8 @@
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
   </joint>
-
-  <transmission name="tran0">
+  
+  <transmission name="waist_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="waist_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -120,7 +117,7 @@
   </transmission>
 
   <link name="waist_roll_link">
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -141,22 +138,7 @@
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
   </link>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   <joint name="waist_yaw" type="revolute">
     <parent link="waist_roll_link"/>
     <child link="waist_yaw_link"/>
@@ -175,10 +157,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
   <link name="waist_yaw_link">
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -198,7 +180,7 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-   </link>
+  </link>
    
   <!-- head -->
   <joint name="head_yaw" type="revolute">
@@ -208,7 +190,7 @@
     <axis xyz="0 0 -1"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
   <transmission name="head_yaw_tran">
      <type>transmission_interface/SimpleTransmission</type>
@@ -219,10 +201,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
   <link name="head_yaw_link">
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -242,7 +224,7 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-   </link>
+  </link>
 
   <joint name="head_pitch" type="revolute">
     <parent link="head_yaw_link"/>
@@ -251,7 +233,7 @@
     <axis xyz="0 -1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
   <transmission name="head_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
@@ -265,7 +247,7 @@
    </transmission>
 
   <link name="head_pitch_link">
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -285,7 +267,7 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-   </link>
+  </link>
 
   <joint name="head_roll" type="revolute">
     <parent link="head_pitch_link"/>
@@ -294,7 +276,7 @@
     <axis xyz="-1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
   <transmission name="head_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
@@ -305,10 +287,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
   <link name="head_roll_link">
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -328,8 +310,7 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-   </link>
-
+  </link>
 
 
 
@@ -341,9 +322,9 @@
     <axis xyz="0 -1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-<transmission name="l_shoulder_pitch_tran">
+  <transmission name="l_shoulder_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_shoulder_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -352,10 +333,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
-<link name="l_shoulder_pitch_link">
-   <collision>
+  <link name="l_shoulder_pitch_link">
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -375,18 +356,18 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-   </link>
+  </link>
 
-<joint name="l_shoulder_roll" type="revolute">
+  <joint name="l_shoulder_roll" type="revolute">
     <parent link="l_shoulder_pitch_link"/>
     <child link="l_shoulder_roll_link"/>
     <origin xyz="0 0.0515 0" rpy="-1.570796327 0 0"/>
     <axis xyz="-1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-<transmission name="l_shoulder_roll_tran">
+  <transmission name="l_shoulder_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_shoulder_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -395,10 +376,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
-<link name="l_shoulder_roll_link">
-   <collision>
+  <link name="l_shoulder_roll_link">
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -420,16 +401,16 @@
     </inertial>
   </link>
 
-<joint name="l_elbow_pitch" type="revolute">
+  <joint name="l_elbow_pitch" type="revolute">
     <parent link="l_shoulder_roll_link"/>
     <child link="l_elbow_pitch_link"/>
     <origin xyz="0 0.2 0" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-<transmission name="l_elbow_pitch_tran">
+  <transmission name="l_elbow_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_elbow_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -438,10 +419,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
-<link name="l_elbow_pitch_link">
-   <collision>
+  <link name="l_elbow_pitch_link">
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -464,18 +445,17 @@
   </link>
 
 
-<!-- right Arm -->
-
-<joint name="r_shoulder_pitch" type="revolute">
+  <!-- right Arm -->
+  <joint name="r_shoulder_pitch" type="revolute">
     <parent link="waist_yaw_link"/>
     <child link="r_shoulder_pitch_link"/>
     <origin xyz="0 -0.1535 0.147" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-<transmission name="r_shoulder_pitch_tran">
+  <transmission name="r_shoulder_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_shoulder_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -484,10 +464,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
-<link name="r_shoulder_pitch_link">
-   <collision>
+  <link name="r_shoulder_pitch_link">
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -507,18 +487,18 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-   </link>
+  </link>
 
-<joint name="r_shoulder_roll" type="revolute">
+  <joint name="r_shoulder_roll" type="revolute">
     <parent link="r_shoulder_pitch_link"/>
     <child link="r_shoulder_roll_link"/>
     <origin xyz="0 -0.0515 0" rpy="1.570796327 0 0"/>
     <axis xyz="-1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-<transmission name="r_shoulder_roll_tran">
+  <transmission name="r_shoulder_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_shoulder_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -527,10 +507,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
-<link name="r_shoulder_roll_link">
-   <collision>
+  <link name="r_shoulder_roll_link">
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -552,16 +532,16 @@
     </inertial>
   </link>
 
-<joint name="r_elbow_pitch" type="revolute">
+  <joint name="r_elbow_pitch" type="revolute">
     <parent link="r_shoulder_roll_link"/>
     <child link="r_elbow_pitch_link"/>
     <origin xyz="0 -0.2 0" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-<transmission name="r_elbow_pitch_tran">
+  <transmission name="r_elbow_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_elbow_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -570,10 +550,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
-<link name="r_elbow_pitch_link">
-   <collision>
+  <link name="r_elbow_pitch_link">
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -597,8 +577,7 @@
 
 
 
-<!-- left leg -->
-
+  <!-- left leg -->
   <joint name="l_hip_pitch" type="revolute">
     <parent link="pelvis"/>
     <child link="l_hip_pitch_link"/>
@@ -606,7 +585,7 @@
     <axis xyz="0 -1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
 
   <transmission name="l_hip_pitch_tran">
@@ -618,7 +597,7 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
 
   <link name="l_hip_pitch_link">
@@ -642,19 +621,18 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
-   <joint name="l_hip_roll" type="revolute">
+  <joint name="l_hip_roll" type="revolute">
     <parent link="l_hip_pitch_link"/>
     <child link="l_hip_roll_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <axis xyz="1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="l_hip_roll_tran">
+  <transmission name="l_hip_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_hip_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -663,13 +641,12 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
 
 
   <link name="l_hip_roll_link">
-
-     <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -689,7 +666,6 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
   <joint name="l_hip_yaw" type="revolute">
@@ -699,9 +675,9 @@
     <axis xyz="0 0 1"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="l_hip_yaw_tran">
+  <transmission name="l_hip_yaw_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_hip_yaw">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -710,10 +686,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
   <link name="l_hip_yaw_link">
-   <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -733,7 +709,6 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
   <joint name="l_knee_pitch" type="revolute">
@@ -743,9 +718,9 @@
     <axis xyz="0 1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="l_knee_pitch_tran">
+  <transmission name="l_knee_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_knee_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -754,11 +729,10 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
 
   <link name="l_knee_pitch_link">
-
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -779,7 +753,6 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
   <joint name="l_ankle_pitch" type="revolute">
@@ -789,9 +762,9 @@
     <axis xyz="0 -1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="l_ankle_pitch_tran">
+  <transmission name="l_ankle_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_ankle_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -800,7 +773,7 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
   <link name="l_ankle_pitch_link">
     <collision>
@@ -823,7 +796,6 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
   <joint name="l_ankle_roll" type="revolute">
@@ -833,9 +805,9 @@
     <axis xyz="1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="l_ankle_roll_tran">
+  <transmission name="l_ankle_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="l_ankle_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -844,7 +816,7 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
   <link name="l_ankle_roll_link">
     <collision>
@@ -872,11 +844,10 @@
   <joint name="l_last" type="fixed">
     <parent link="l_ankle_roll_link"/>
     <child link="l_foot_link"/>
-    <origin xyz="0 0 -0.135" rpy="0 0 0"/>
-    
+    <origin xyz="0 0 -0.135" rpy="0 0 0"/>    
   </joint>
 
-<link name="l_foot_link">
+  <link name="l_foot_link">
     <collision>
       <origin xyz="0 0 -0.005" rpy="0 0 0"/>
       <geometry>
@@ -899,18 +870,18 @@
     </inertial>
   </link>
 
-<!-- right leg -->
-
-<joint name="r_hip_pitch" type="revolute">
+  
+  <!-- right leg -->
+  <joint name="r_hip_pitch" type="revolute">
     <parent link="pelvis"/>
     <child link="r_hip_pitch_link"/>
     <origin xyz="0 -0.105 0" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-   <transmission name="r_hip_pitch_tran">
+  <transmission name="r_hip_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_hip_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -922,7 +893,7 @@
   </transmission>
 
 
- <link name="r_hip_pitch_link">
+  <link name="r_hip_pitch_link">
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -943,11 +914,9 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
+  </link>
 
-</link>
-
-<!-- - - - - - - - - - - - - - - - - - - - -->
-
+  <!-- - - - - - - - - - - - - - - - - - - - -->
   <joint name="r_hip_roll" type="revolute">
     <parent link="r_hip_pitch_link"/>
     <child link="r_hip_roll_link"/>
@@ -955,9 +924,9 @@
     <axis xyz="1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="r_hip_roll_tran">
+  <transmission name="r_hip_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_hip_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -966,12 +935,11 @@
        <hardwareInterface>EffortJointInterface</hardwareInterface>
        <mechanicalReduction>1</mechanicalReduction>
      </actuator>
-   </transmission>
+  </transmission>
 
 
   <link name="r_hip_roll_link">
-
-<collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -991,11 +959,9 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
-<!-- - - - - - - - - - - - - - - - - - - - -->
-
+  <!-- - - - - - - - - - - - - - - - - - - - -->
   <joint name="r_hip_yaw" type="revolute">
     <parent link="r_hip_roll_link"/>
     <child link="r_hip_yaw_link"/>
@@ -1003,9 +969,9 @@
     <axis xyz="0 0 1"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="r_hip_yaw_tran">
+  <transmission name="r_hip_yaw_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_hip_yaw">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -1038,13 +1004,9 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
-
-
-<!-- - - - - - - - - - - - - - - - - - - - -->
-
+  <!-- - - - - - - - - - - - - - - - - - - - -->
   <joint name="r_knee_pitch" type="revolute">
     <parent link="r_hip_yaw_link"/>
     <child link="r_knee_pitch_link"/>
@@ -1052,9 +1014,9 @@
     <axis xyz="0 -1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="r_knee_pitch_tran">
+  <transmission name="r_knee_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_knee_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -1067,7 +1029,6 @@
 
 
   <link name="r_knee_pitch_link">
-
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -1088,11 +1049,9 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
-<!-- - - - - - - - - - - - - - - - - - - - -->
-
+  <!-- - - - - - - - - - - - - - - - - - - - -->
   <joint name="r_ankle_pitch" type="revolute">
     <parent link="r_knee_pitch_link"/>
     <child link="r_ankle_pitch_link"/>
@@ -1100,9 +1059,9 @@
     <axis xyz="0 1 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
- <transmission name="r_ankle_pitch_tran">
+  <transmission name="r_ankle_pitch_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_ankle_pitch">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -1115,8 +1074,7 @@
 
 
   <link name="r_ankle_pitch_link">
-
-  <collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
@@ -1136,11 +1094,9 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
-<!-- - - - - - - - - - - - - - - - - - - - -->
-
+  <!-- - - - - - - - - - - - - - - - - - - - -->
   <joint name="r_ankle_roll" type="revolute">
     <parent link="r_ankle_pitch_link"/>
     <child link="r_ankle_roll_link"/>
@@ -1148,9 +1104,9 @@
     <axis xyz="1 0 0"/>
     <limit velocity="6.5" effort="1000" lower="${-pi/2}" upper="${pi/2}" />
     <dynamics damping = "0.7"/>
-   </joint>
+  </joint>
 
-   <transmission name="r_ankle_roll_tran">
+  <transmission name="r_ankle_roll_tran">
      <type>transmission_interface/SimpleTransmission</type>
      <joint name="r_ankle_roll">
        <hardwareInterface>EffortJointInterface</hardwareInterface>
@@ -1163,14 +1119,12 @@
 
 
   <link name="r_ankle_roll_link">
-
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <box size="0.01 0.01 0.01" />
       </geometry>
     </collision>
-
 
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -1185,7 +1139,6 @@
       <mass value="1"/>
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
-
   </link>
 
   <joint name="r_last" type="fixed">
@@ -1194,10 +1147,8 @@
     <origin xyz="0 0 -0.135" rpy="0 0 0"/>
   </joint>
 
-
-<link name="r_foot_link">
-
-  <collision>
+  <link name="r_foot_link">
+    <collision>
       <origin xyz="0 0 -0.005" rpy="0 0 0"/>
       <geometry>
         <box size="0.315 0.160 0.027" />
@@ -1218,9 +1169,7 @@
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />      
     </inertial>
   </link>
-
-
-
+  
 </robot>
 
 
