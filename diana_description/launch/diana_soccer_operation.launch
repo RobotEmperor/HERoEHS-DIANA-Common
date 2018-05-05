@@ -6,11 +6,11 @@
     command="$(find xacro)/xacro.py '$(find diana_description)/urdf/soccer_simulation.xacro'" />
 
     <!-- Show joint values -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <!--<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
         <param name="use_gui" value="TRUE"/>
         <remap from="/joint_states" to="/operation/diana_soccer/joint_states" />
         <rosparam param="source_list">["/heroehs/diana_soccer/joint_states"]</rosparam>
-    </node>
+    </node> -->
 
     <!-- Show in Rviz -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find diana_description)/launch/diana_soccer.rviz" output="screen"/>
